@@ -12,11 +12,11 @@ const Dock = () => {
   const toggleApp = app => {
     if (!app.canOpen) return
 
-    const window = windows[app.id]
+    const windowState = windows[app.id]
 
-    if (!window) return
+    if (!windowState) return
 
-    if (window.isOpen) {
+    if (windowState.isOpen) {
       closeWindow(app.id)
     } else {
       openWindow(app.id)

@@ -7,7 +7,14 @@ import { useLayoutEffect, useRef } from 'react'
 const WindowWrapper = (Component, windowKey) => {
   const Wrapped = props => {
     const { focusWindow, windows } = useWindowStore()
-    const { isOpen, zIndex } = windows[windowKey]
+    const windowState = windows[windowKey]
+
+    if (!windowState) {
+      console.error(`WindowWrapper: Unknown windowKey "${windowKey}"`)
+      return null
+    }
+
+    const { isOpen, zIndex } = windowState
     const ref = useRef(null)
 
     useGSAP(() => {
